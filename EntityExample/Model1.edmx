@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbStudentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClassTable">
+          <Key>
+            <PropertyRef Name="CLASS" />
+          </Key>
+          <Property Name="CLASS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CLASSNAME" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="20" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="20" />
+          <Property Name="PICTURE" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TableGrade">
+          <Key>
+            <PropertyRef Name="GRADEID" />
+          </Key>
+          <Property Name="GRADEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STDNT" Type="int" />
+          <Property Name="CLASS" Type="int" />
+          <Property Name="EXAM1" Type="smallint" />
+          <Property Name="EXAM2" Type="smallint" />
+          <Property Name="EXAM3" Type="smallint" />
+          <Property Name="AVERAGE" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <Association Name="FK_TableGrade_ClassTable">
+          <End Role="ClassTable" Type="Self.ClassTable" Multiplicity="0..1" />
+          <End Role="TableGrade" Type="Self.TableGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassTable">
+              <PropertyRef Name="CLASS" />
+            </Principal>
+            <Dependent Role="TableGrade">
+              <PropertyRef Name="CLASS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGrade_StudentTable">
+          <End Role="StudentTable" Type="Self.StudentTable" Multiplicity="0..1" />
+          <End Role="TableGrade" Type="Self.TableGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TableGrade">
+              <PropertyRef Name="STDNT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GRADELIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DbStudentModelStoreContainer">
+          <EntitySet Name="ClassTable" EntityType="Self.ClassTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentTable" EntityType="Self.StudentTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableGrade" EntityType="Self.TableGrade" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TableGrade_ClassTable" Association="Self.FK_TableGrade_ClassTable">
+            <End Role="ClassTable" EntitySet="ClassTable" />
+            <End Role="TableGrade" EntitySet="TableGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGrade_StudentTable" Association="Self.FK_TableGrade_StudentTable">
+            <End Role="StudentTable" EntitySet="StudentTable" />
+            <End Role="TableGrade" EntitySet="TableGrade" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbStudentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClassTable">
+          <Key>
+            <PropertyRef Name="CLASS" />
+          </Key>
+          <Property Name="CLASS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLASSNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TableGrades" Relationship="Self.FK_TableGrade_ClassTable" FromRole="ClassTable" ToRole="TableGrade" />
+        </EntityType>
+        <EntityType Name="StudentTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PICTURE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TableGrades" Relationship="Self.FK_TableGrade_StudentTable" FromRole="StudentTable" ToRole="TableGrade" />
+        </EntityType>
+        <EntityType Name="TableGrade">
+          <Key>
+            <PropertyRef Name="GRADEID" />
+          </Key>
+          <Property Name="GRADEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STDNT" Type="Int32" />
+          <Property Name="CLASS" Type="Int32" />
+          <Property Name="EXAM1" Type="Int16" />
+          <Property Name="EXAM2" Type="Int16" />
+          <Property Name="EXAM3" Type="Int16" />
+          <Property Name="AVERAGE" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="STATUS" Type="Boolean" />
+          <NavigationProperty Name="ClassTable" Relationship="Self.FK_TableGrade_ClassTable" FromRole="TableGrade" ToRole="ClassTable" />
+          <NavigationProperty Name="StudentTable" Relationship="Self.FK_TableGrade_StudentTable" FromRole="TableGrade" ToRole="StudentTable" />
+        </EntityType>
+        <Association Name="FK_TableGrade_ClassTable">
+          <End Role="ClassTable" Type="Self.ClassTable" Multiplicity="0..1" />
+          <End Role="TableGrade" Type="Self.TableGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassTable">
+              <PropertyRef Name="CLASS" />
+            </Principal>
+            <Dependent Role="TableGrade">
+              <PropertyRef Name="CLASS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableGrade_StudentTable">
+          <End Role="StudentTable" Type="Self.StudentTable" Multiplicity="0..1" />
+          <End Role="TableGrade" Type="Self.TableGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentTable">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TableGrade">
+              <PropertyRef Name="STDNT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbStudentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClassTables" EntityType="Self.ClassTable" />
+          <EntitySet Name="StudentTables" EntityType="Self.StudentTable" />
+          <EntitySet Name="TableGrades" EntityType="Self.TableGrade" />
+          <AssociationSet Name="FK_TableGrade_ClassTable" Association="Self.FK_TableGrade_ClassTable">
+            <End Role="ClassTable" EntitySet="ClassTables" />
+            <End Role="TableGrade" EntitySet="TableGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableGrade_StudentTable" Association="Self.FK_TableGrade_StudentTable">
+            <End Role="StudentTable" EntitySet="StudentTables" />
+            <End Role="TableGrade" EntitySet="TableGrades" />
+          </AssociationSet>
+          <FunctionImport Name="GRADELIST" ReturnType="Collection(DbStudentModel.GRADELIST_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GRADELIST_Result">
+          <Property Type="String" Name="AD_SOYAD" Nullable="true" MaxLength="41" />
+          <Property Type="String" Name="CLASSNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int16" Name="EXAM1" Nullable="true" />
+          <Property Type="Int16" Name="EXAM2" Nullable="true" />
+          <Property Type="Int16" Name="EXAM3" Nullable="true" />
+          <Property Type="Decimal" Name="AVERAGE" Nullable="true" Precision="5" Scale="2" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbStudentModelStoreContainer" CdmEntityContainer="DbStudentEntities">
+          <EntitySetMapping Name="ClassTables">
+            <EntityTypeMapping TypeName="DbStudentModel.ClassTable">
+              <MappingFragment StoreEntitySet="ClassTable">
+                <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+                <ScalarProperty Name="CLASSNAME" ColumnName="CLASSNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentTables">
+            <EntityTypeMapping TypeName="DbStudentModel.StudentTable">
+              <MappingFragment StoreEntitySet="StudentTable">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableGrades">
+            <EntityTypeMapping TypeName="DbStudentModel.TableGrade">
+              <MappingFragment StoreEntitySet="TableGrade">
+                <ScalarProperty Name="GRADEID" ColumnName="GRADEID" />
+                <ScalarProperty Name="STDNT" ColumnName="STDNT" />
+                <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+                <ScalarProperty Name="EXAM1" ColumnName="EXAM1" />
+                <ScalarProperty Name="EXAM2" ColumnName="EXAM2" />
+                <ScalarProperty Name="EXAM3" ColumnName="EXAM3" />
+                <ScalarProperty Name="AVERAGE" ColumnName="AVERAGE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GRADELIST" FunctionName="DbStudentModel.Store.GRADELIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DbStudentModel.GRADELIST_Result">
+                <ScalarProperty Name="AD_SOYAD" ColumnName="AD SOYAD" />
+                <ScalarProperty Name="CLASSNAME" ColumnName="CLASSNAME" />
+                <ScalarProperty Name="EXAM1" ColumnName="EXAM1" />
+                <ScalarProperty Name="EXAM2" ColumnName="EXAM2" />
+                <ScalarProperty Name="EXAM3" ColumnName="EXAM3" />
+                <ScalarProperty Name="AVERAGE" ColumnName="AVERAGE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
