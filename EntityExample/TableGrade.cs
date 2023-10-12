@@ -25,5 +25,6 @@ namespace EntityExample
     
         public virtual ClassTable ClassTable { get; set; }
         public virtual StudentTable StudentTable { get; set; }
+        public object CLASSNAME { get; internal set; }
     }
 }

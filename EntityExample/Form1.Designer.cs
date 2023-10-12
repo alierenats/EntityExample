@@ -62,8 +62,17 @@
             this.BtnClassList = new System.Windows.Forms.Button();
             this.btnGradeList = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
-            this.btnGradeUpdate = new System.Windows.Forms.Button();
+            this.btnJoin = new System.Windows.Forms.Button();
             this.btnProcedures = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.bttnLinq = new System.Windows.Forms.Button();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,7 +84,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(-1, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1156, 302);
+            this.dataGridView1.Size = new System.Drawing.Size(988, 302);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnList
@@ -126,6 +135,7 @@
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox1
             // 
@@ -166,6 +176,7 @@
             this.TxtSurname.Name = "TxtSurname";
             this.TxtSurname.Size = new System.Drawing.Size(100, 20);
             this.TxtSurname.TabIndex = 18;
+            this.TxtSurname.TextChanged += new System.EventHandler(this.TxtSurname_TextChanged);
             // 
             // label5
             // 
@@ -182,6 +193,7 @@
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(100, 20);
             this.TxtName.TabIndex = 16;
+            this.TxtName.TextChanged += new System.EventHandler(this.TxtName_TextChanged);
             // 
             // label3
             // 
@@ -198,6 +210,7 @@
             this.TxtStudentID.Name = "TxtStudentID";
             this.TxtStudentID.Size = new System.Drawing.Size(100, 20);
             this.TxtStudentID.TabIndex = 14;
+            this.TxtStudentID.TextChanged += new System.EventHandler(this.TxtStudentID_TextChanged);
             // 
             // label1
             // 
@@ -383,14 +396,15 @@
             this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
             // 
-            // btnGradeUpdate
+            // btnJoin
             // 
-            this.btnGradeUpdate.Location = new System.Drawing.Point(782, 626);
-            this.btnGradeUpdate.Name = "btnGradeUpdate";
-            this.btnGradeUpdate.Size = new System.Drawing.Size(136, 41);
-            this.btnGradeUpdate.TabIndex = 11;
-            this.btnGradeUpdate.Text = "Grade Update";
-            this.btnGradeUpdate.UseVisualStyleBackColor = true;
+            this.btnJoin.Location = new System.Drawing.Point(782, 626);
+            this.btnJoin.Name = "btnJoin";
+            this.btnJoin.Size = new System.Drawing.Size(136, 41);
+            this.btnJoin.TabIndex = 11;
+            this.btnJoin.Text = "Join";
+            this.btnJoin.UseVisualStyleBackColor = true;
+            this.btnJoin.Click += new System.EventHandler(this.btnJoin_Click);
             // 
             // btnProcedures
             // 
@@ -402,13 +416,120 @@
             this.btnProcedures.UseVisualStyleBackColor = true;
             this.btnProcedures.Click += new System.EventHandler(this.btnProcedures_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(1020, 328);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(78, 17);
+            this.radioButton1.TabIndex = 13;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Sort it (A-Z)";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(1020, 351);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(78, 17);
+            this.radioButton2.TabIndex = 14;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Sort it (Z-A)";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(1020, 375);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(88, 17);
+            this.radioButton3.TabIndex = 15;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "last 5 records";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // bttnLinq
+            // 
+            this.bttnLinq.Location = new System.Drawing.Point(1020, 546);
+            this.bttnLinq.Name = "bttnLinq";
+            this.bttnLinq.Size = new System.Drawing.Size(132, 50);
+            this.bttnLinq.TabIndex = 16;
+            this.bttnLinq.Text = "Linq Entity";
+            this.bttnLinq.UseVisualStyleBackColor = true;
+            this.bttnLinq.Click += new System.EventHandler(this.bttnLinq_Click);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(1020, 402);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(138, 17);
+            this.radioButton4.TabIndex = 17;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "total number of students";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(1020, 425);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(82, 17);
+            this.radioButton5.TabIndex = 18;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Exam 1 Avg";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(1020, 448);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(82, 17);
+            this.radioButton6.TabIndex = 19;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Exam 2 Avg";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(1020, 471);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(82, 17);
+            this.radioButton7.TabIndex = 20;
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "Exam 3 Avg";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(1020, 494);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(97, 17);
+            this.radioButton8.TabIndex = 21;
+            this.radioButton8.TabStop = true;
+            this.radioButton8.Text = "Exam 3 Avg ++";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1045, 740);
+            this.ClientSize = new System.Drawing.Size(1294, 740);
+            this.Controls.Add(this.radioButton8);
+            this.Controls.Add(this.radioButton7);
+            this.Controls.Add(this.radioButton6);
+            this.Controls.Add(this.radioButton5);
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.bttnLinq);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.btnProcedures);
-            this.Controls.Add(this.btnGradeUpdate);
+            this.Controls.Add(this.btnJoin);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnGradeList);
             this.Controls.Add(this.BtnClassList);
@@ -431,6 +552,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -470,8 +592,17 @@
         private System.Windows.Forms.Button BtnClassList;
         private System.Windows.Forms.Button btnGradeList;
         private System.Windows.Forms.Button btnCalculate;
-        private System.Windows.Forms.Button btnGradeUpdate;
+        private System.Windows.Forms.Button btnJoin;
         private System.Windows.Forms.Button btnProcedures;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.Button bttnLinq;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.RadioButton radioButton7;
+        private System.Windows.Forms.RadioButton radioButton8;
     }
 }
 
