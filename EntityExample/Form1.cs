@@ -231,11 +231,21 @@ namespace EntityExample
                              EXAM1 = d1.EXAM1,
                              EXAM2 = d1.EXAM2,
                              EXAM3 = d1.EXAM3,
-                             
+
                          };
             dataGridView1.DataSource = query1.ToList();
 
         }
+
+        private void PassForm2_Click(object sender, EventArgs e)
+        {
+
+            Form2 form2 = new Form2();
+            form2.Show();
+            this.Hide();
+
+        }
+
     }
 }
 //DB-FIRST

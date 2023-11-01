@@ -73,6 +73,7 @@
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.PassForm2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -514,11 +515,22 @@
             this.radioButton8.Text = "Exam 3 Avg ++";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
+            // PassForm2
+            // 
+            this.PassForm2.Location = new System.Drawing.Point(1020, 626);
+            this.PassForm2.Name = "PassForm2";
+            this.PassForm2.Size = new System.Drawing.Size(132, 50);
+            this.PassForm2.TabIndex = 22;
+            this.PassForm2.Text = "FORM 2 ";
+            this.PassForm2.UseVisualStyleBackColor = true;
+            this.PassForm2.Click += new System.EventHandler(this.PassForm2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 740);
+            this.Controls.Add(this.PassForm2);
             this.Controls.Add(this.radioButton8);
             this.Controls.Add(this.radioButton7);
             this.Controls.Add(this.radioButton6);
@@ -603,6 +615,7 @@
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.Button PassForm2;
     }
 }
 
